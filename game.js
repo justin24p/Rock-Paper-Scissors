@@ -31,3 +31,32 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+// Determine Winner
+function game() {
+    let computercount = 0;
+    let playercount = 0;
+    for (let i = 0; i < 5; i++) {
+        let ComputerSelection = getcomputerchoice();
+        let PlayerSelection = getplayerchoice();
+        let roundResult = playRound(ComputerSelection, PlayerSelection);
+        console.log(roundResult);
+
+        if (roundResult === "You Win this! Rock beats Scissors" || 
+            roundResult === "You Win this! Scissors beats Paper" || 
+            roundResult === "You Win this! Paper beats Rock") {
+            computercount++;
+        } else if (roundResult === "Computer Wins!") {
+            playercount++;
+        }
+    }   
+
+    if (computercount > playercount) {
+        console.log("Computer Wins Game!");
+    } else if (playercount > computercount) {
+        console.log("Player Wins Game!");
+    } else {
+        console.log("It's a tie");
+    }
+}
+
+game(); // This line will actually execute the game function
