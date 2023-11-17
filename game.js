@@ -1,9 +1,3 @@
-/// Computer Selection
-function getcomputerchoice() {
-    let choices = ["rock","paper","scissors"];
-    let randomindex = Math.floor(Math.random() * 3);
-    return choices[randomindex];
-}
 
 // button logic 
 let text = document.querySelector('p');
