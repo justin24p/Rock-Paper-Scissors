@@ -5,58 +5,80 @@ function getcomputerchoice() {
     return choices[randomindex];
 }
 
-/// Player Selection 
-function getplayerchoice() {
-    let userchoice = prompt("Please enter a choice:");
-    let lowerchoice = userchoice.toLowerCase();
-    return lowerchoice;
-}
+// button logic 
+let text = document.querySelector('p');
+
+document.getElementById('rock').addEventListener('click', () => {
+    playRound("rock", getcomputerchoice());
+}); 
+
+document.getElementById('paper').addEventListener('click', () => {
+    playRound("paper", getcomputerchoice());
+});
+
+document.getElementById('scissors').addEventListener('click', () => {
+    playRound("scissors", getcomputerchoice());
+});
+
+let player = document.querySelector(".playerScore");
+let computer = document.querySelector(".computerScore");
+let body = document.querySelector("body")
+let playerNum = 0;
+let computerNum = 0;
+let overlay = document.getElementById("overlay");
 
 /// Round Winner Selection 
 function playRound(playerSelection, computerSelection) {
+    console.log(playerSelection + " player");
+    console.log(computerSelection + " computer");
     if (playerSelection === computerSelection) {
-        return "It's A Tie";
+        text.textContent = "Its a tie"
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You Win this! Rock beats Scissors";
+        text.textContent = "You Win this! Rock beats Scissors";
+        playerNum += 1;
+        player.textContent = playerNum.toString();
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You Win this! Scissors beats Paper";
+        text.textContent = "You Win this! Scissors beats Paper";
+        playerNum += 1;
+        player.textContent = playerNum.toString();
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You Win this! Paper beats Rock";
+        text.textContent = "You Win this! Paper beats Rock";
+        playerNum += 1;
+        player.textContent = playerNum.toString();
     }
     else {
-        return "Computer Wins!";
+        text.textContent = "Computer Wins";
+        computerNum += 1;
+        computer.textContent = computerNum.toString();
     }
-}
-
-// Determine Winner
-function game() {
-    let computercount = 0;
-    let playercount = 0;
-    for (let i = 0; i < 5; i++) {
-        let ComputerSelection = getcomputerchoice();
-        let PlayerSelection = getplayerchoice();
-        let roundResult = playRound(ComputerSelection, PlayerSelection);
-        console.log(roundResult);
-
-        if (roundResult === "You Win this! Rock beats Scissors" || 
-            roundResult === "You Win this! Scissors beats Paper" || 
-            roundResult === "You Win this! Paper beats Rock") {
-            computercount++;
-        } else if (roundResult === "Computer Wins!") {
-            playercount++;
+    if (playerNum === 5 || computerNum === 5) {
+        overlay.style.display = "block";
+        const gameEndDiv = document.createElement('div');
+        const gameEndButton = document.createElement('button');
+        const gameEndText = document.createElement('p');
+        if (playerNum > computerNum) {
+            gameEndText.textContent = "You Won :)"
+        } else {
+            gameEndText.textContent = "You Lose :("
         }
-    }   
+        gameEndButton.textContent = "Play Again"; 
+        gameEndDiv.appendChild(gameEndButton)
+        gameEndDiv.appendChild(gameEndText)
+        overlay.appendChild(gameEndDiv);
 
-    if (computercount > playercount) {
-        console.log("Computer Wins Game!");
-    } else if (playercount > computercount) {
-        console.log("Player Wins Game!");
+        //restarts game 
+        gameEndButton.addEventListener("click", () => {
+            overlay.style.display = "none";
+            playerNum = 0;
+            computerNum = 0;
+            computer.textContent = computerNum.toString();
+            player.textContent = playerNum.toString();
+        })
+
     } else {
-        console.log("It's a tie");
+        overlay.style.display = "none";
     }
 }
-
-game(); // This line will actually execute the game function

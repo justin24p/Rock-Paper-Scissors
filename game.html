@@ -3,10 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <title>Rock Paper Scissors</title>
-    <script src="game.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #3d3e51;
+            overflow: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            font-size: x-large;
+            background-color: #212129;
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            text-shadow: 2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000;
+            padding: 20px;
+        }
+        .buttonContainer {
+            margin-top: 200px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .results {
+            font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;;
+            display: flex;
+            color: whitesmoke;
+            font-family: sans-serif;
+            font-size: large;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 700;
+        }
+        .buttonContainer button {
+            background-color: lightgray;
+            border: none;
+            padding: 80px;
+            border-radius: 20px;
+            border: 1px solid #4a4a4a; /* Border color */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Box shadow */
+        }
+        .scoreContainer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .playerScore ,.computerScore, .dashes {
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            font-size: 40px;
+            text-shadow: 2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000;
+        }
+        #overlay {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adjust the last value (0.5) for opacity */
+            display: none;
+        }
+        #overlay div { 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+            height: 250px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #404046;
+            border-radius: 20px;
+        }
+        #overlay p {
+            display: flex;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+        }
+        #overlay button{
+            display: flex;
+            width: 250px;
+            justify-content: center;
+            background-color: #4a4a4a;
+            color: white;
+            border: none;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            font-size: 25px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+        .buttonContainer button img {
+    width: 300px; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+}
+
+    </style>
 </head>
 <body>
-    
+    <div class="header">
+        <h1>Rock Paper Scissors</h1>
+    </div>
+    <div class="results" >
+        <p>Choose Your Weapon!</p>
+    </div>
+    <div class="scoreContainer">
+        <h2 class="playerScore">0</h2>
+        <h3 class="dashes"> -- </h3>
+        <h2 class="computerScore">0</h2>
+    </div>
+    <div class="buttonContainer">
+        <button id="rock">
+            <img src="rock.png">
+        </button>
+        <button id="paper">
+            <img src="paper.png">
+        </button>
+        <button id="scissors">
+            <img src="scissors.png">
+        </button>
+    </div>
+    <div id="overlay"></div>
+    <script src="game.js"></script>
 </body>
 </html>
